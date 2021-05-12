@@ -1,8 +1,8 @@
 public class BinaryTree <E extends Comparable>{
 
-    protected E value;
-    protected BinaryTree<E> right, left;
-    protected BinaryTree<E> parent;
+    private E value;
+    private BinaryTree<E> right, left;
+    private BinaryTree<E> parent;
 
     public BinaryTree(){
         value = null;
@@ -12,6 +12,7 @@ public class BinaryTree <E extends Comparable>{
 
     public BinaryTree(E value){
         this.value = value;
+        parent = null;
         right = left = new BinaryTree<E>();
         setRight(right);
         setLeft(left);
@@ -19,9 +20,9 @@ public class BinaryTree <E extends Comparable>{
 
     public BinaryTree(E value, BinaryTree<E> left, BinaryTree<E> right){
         this.value = value;
-        if(left == null) left = new BinaryTree<>();
+        if(left == null) left = new BinaryTree<E>();
         setRight(right);
-        if(right == null) right = new BinaryTree<>();
+        if(right == null) right = new BinaryTree<E>();
         setLeft(left);
     }
 
@@ -43,12 +44,13 @@ public class BinaryTree <E extends Comparable>{
             left.setParent(null);
         left = newLeft;
         left.setParent(this);
+
     }
 
     public void setRight(BinaryTree<E> newRight){
         if(isEmpty()) return;
         if(right != null && right.parent()== this)
-            left.setParent(null);
+            right.setParent(null);
         right = newRight;
         right.setParent(this);
     }
@@ -69,5 +71,4 @@ public class BinaryTree <E extends Comparable>{
     public boolean isEmpty(){
         return value == null;
     }
-
 }
