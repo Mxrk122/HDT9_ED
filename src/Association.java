@@ -19,4 +19,10 @@ public class Association<K extends Comparable, V> implements Comparable<Associat
     public int compareTo(Association<K, V> o) {
         return key.compareTo(o.getKey());
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return key.toString() + " --> " + value.toString();
+    }
 }
